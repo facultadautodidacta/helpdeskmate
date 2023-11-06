@@ -11,7 +11,10 @@
     <title>@yield('titulo')</title>
   </head>
   <body>
-    @include('shared/menu')
+    @auth
+      @include('shared/menu')
+    @endauth
+    
     @yield('contenido')
 
     

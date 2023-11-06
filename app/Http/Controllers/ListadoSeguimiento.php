@@ -6,11 +6,12 @@ use Illuminate\Http\Request;
 
 class ListadoSeguimiento extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    public function __construct()
+    {
+        $this->middleware(['auth'])->only(['index']);
+    }
+
     public function index()
     {
         return view('modules/listado_seguimiento/index');
