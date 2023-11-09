@@ -5,11 +5,11 @@
         <div class="row">
             <div class="col mt-4">
                 <h2>Captura de trabajo de soporte</h2>
-                <a href="#" class="btn btn-primary">
+                <a href="{{ route('soporte-create') }}" class="btn btn-primary">
                     Agregar
                 </a>
                 <hr>
-                <table class="table table-sm table-hover">
+                <table class="table table-bordered table-sm table-hover">
                     <thead>
                         <tr>
                             <th>Cliente</th>
@@ -25,29 +25,36 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($items as $item)
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ $item->cliente }}</td>
+                            <td>{{ $item->trabajo }}</td>
+                            <td>{{ $item->monto }}</td>
+                            <td>{{ $item->fecha }}</td>
+                            <td>{{ $item->telefono }}</td>
+                            <td>{{ $item->correo }}</td>
+                            <td>{{ $item->trabajo_futuro }}</td>
+                            <td>{{ $item->fecha_futura }}</td>
                             <td>
-                                <a href="" class="btn btn-warning">
+                                <a href="{{ route('soporte-edit', $item->id) }}" class="btn btn-warning">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
                             </td>
                             <td>
-                                <a href="" class="btn btn-danger">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
+                                <form action="{{ route('soporte-destroy', $item->id) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    
+                                    <button class="btn btn-danger">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
- <     </div>
+      </div>
 @endsection

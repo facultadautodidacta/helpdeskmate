@@ -13,5 +13,12 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('auth-logout');
 //Route::get('/nuevo', [AuthController::class, 'nuevo']);
 
 Route::get('/soporte', [CapturaSoporte::class, 'index'])->name('soporte-index');
+Route::post('/store', [CapturaSoporte::class, 'store'])->name('soporte-store');
+Route::get('/create', [CapturaSoporte::class, 'create'])->name('soporte-create');
+Route::get('/edit/{id}', [CapturaSoporte::class, 'edit'])->name('soporte-edit');
+Route::put('/update/{id}', [CapturaSoporte::class, 'update'])->name('soporte-update');
+Route::delete('/destroy/{id}', [CapturaSoporte::class, 'destroy'])->name('soporte-destroy');
+
+
 Route::get('/listado', [ListadoSeguimiento::class, 'index'])->name('listado-index');
 

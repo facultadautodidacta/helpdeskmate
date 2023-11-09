@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Soporte;
 use Illuminate\Http\Request;
 
 class CapturaSoporte extends Controller
@@ -14,7 +15,8 @@ class CapturaSoporte extends Controller
 
     public function index()
     {
-        return view('modules/captura_soporte/index');
+        $items = Soporte::all();
+        return view('modules/captura_soporte/index', compact('items'));
     }
 
     /**
@@ -24,7 +26,7 @@ class CapturaSoporte extends Controller
      */
     public function create()
     {
-        //
+        return view('modules/captura_soporte/create');
     }
 
     /**
@@ -35,7 +37,18 @@ class CapturaSoporte extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item = new Soporte();
+        $item->cliente = $request->post('cliente');
+        $item->trabajo = $request->post('trabajo');
+        $item->monto = $request->post('monto');
+        $item->fecha = $request->post('fecha');
+        $item->telefono = $request->post('telefono');
+        $item->correo = $request->post('correo');
+        $item->trabajo_futuro = $request->post('trabajo_futuro');
+        $item->fecha_futura = $request->post('fecha_futura');
+        $item->save();
+
+        return redirect()->route('soporte-index');
     }
 
     /**
@@ -57,7 +70,8 @@ class CapturaSoporte extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Soporte::find($id);
+        return view('modules/captura_soporte/edit', compact('item'));
     }
 
     /**
@@ -69,7 +83,19 @@ class CapturaSoporte extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $item = Soporte::find($id);
+        $item->cliente = $request->post('cliente');
+        $item->trabajo = $request->post('trabajo');
+        $item->monto = $request->post('monto');
+        $item->fecha = $request->post('fecha');
+        $item->telefono = $request->post('telefono');
+        $item->correo = $request->post('correo');
+        $item->trabajo_futuro = $request->post('trabajo_futuro');
+        $item->fecha_futura = $request->post('fecha_futura');
+        $item->save();
+
+        return redirect()->route('soporte-index');
+        
     }
 
     /**
@@ -80,6 +106,8 @@ class CapturaSoporte extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = Soporte::find($id);
+        $item->delete();
+        return redirect()->route('soporte-index');
     }
 }
