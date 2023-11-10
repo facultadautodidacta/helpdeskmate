@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Soporte;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ListadoSeguimiento extends Controller
@@ -14,7 +16,12 @@ class ListadoSeguimiento extends Controller
 
     public function index()
     {
-        return view('modules/listado_seguimiento/index');
+        $fecha_inicio = Carbon::now()->toDateString();
+        $fecha_fin = Carbon::now()->addDays(7)->toDateString();
+        $items = Soporte::WhereDate('fecha_futura', '>=', $fecha_inicio)
+                        ->WhereDate('fecha_futura', '<=', $fecha_fin)
+                        ->get();
+        return view('modules/listado_seguimiento/index',compact('items'));
     }
 
     /**

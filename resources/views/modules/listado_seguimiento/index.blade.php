@@ -6,7 +6,7 @@
             <div class="col mt-4">
                 <h2>Listado de seguimiento</h2>
                 <hr>
-                <table class="table table-sm table-hover">
+                <table class="table table-bordered table-sm table-hover">
                     <thead>
                         <tr>
                             <th>Cliente</th>
@@ -21,19 +21,21 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($items as $item)
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ $item->cliente }}</td>
+                            <td>{{ $item->trabajo }}</td>
+                            <td>{{ $item->monto }}</td>
+                            <td>{{ $item->fecha }}</td>
+                            <td>{{ $item->telefono }}</td>
+                            <td>{{ $item->correo }}</td>
+                            <td>{{ $item->trabajo_futuro }}</td>
+                            <td>{{ $item->fecha_futura }}</td>
                             
                         </tr>
+                        @endforeach
                     </tbody>
-                </table> 
+                </table>
             </div>
         </div>
     </div>
