@@ -9,7 +9,7 @@
                     Agregar
                 </a>
                 <hr>
-                <table class="table table-bordered table-sm table-hover">
+                <table id="soporte-table" class="table table-bordered table-sm table-hover">
                     <thead>
                         <tr>
                             <th>Cliente</th>
@@ -57,4 +57,13 @@
             </div>
         </div>
       </div>
+
+      @push('scripts')
+          <script>
+            $(document).ready(function(){
+                $('#soporte-table').DataTable();
+            });
+          </script>
+      @endpush
+
 @endsection
